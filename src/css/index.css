@@ -20,3 +20,9 @@ p, h3 {
 .input-group {
   overflow: hidden;
 }
+.card-header {
+  background-color: rgb(1, 43, 80) !important;
+}
+.spaces {
+  white-space: pre-line;
+}
