@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Oswald:wght@500&display=swap');
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,4 +6,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(15, 33, 48) !important;
+}
+header {
+  background-color: rgb(203, 231, 255);
+}
+h1 {
+  font-family: 'Oswald', sans-serif;
+}
+p, h3 {
+  font-family: 'Nunito', sans-serif;
+}
+.input-group {
+  overflow: hidden;
 }
