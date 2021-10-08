@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faUserFriends, faCode, faFileCode } from "@fortawesome/free-solid-svg-icons"
+import { faMapMarkerAlt, faUserFriends, faCode, faFileCode } from "@fortawesome/free-solid-svg-icons";
 
 class UserInfo extends Component {
     state = {

@@ -26,3 +26,9 @@ p, h3 {
 .spaces {
   white-space: pre-line;
 }
+.bg-dark-2 {
+  background-color: rgb(16, 17, 19);
+}
+.bg-info-2 {
+  background-color: rgb(3, 26, 46) !important;
+}

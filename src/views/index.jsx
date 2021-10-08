@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { GetUser } from "./helpers/axios-http";
 import UserInfo from "./partials/templates/user-info";
+import Repositories from "./partials/repositories";
 
 class Index extends Component {
     state = {
@@ -64,6 +65,9 @@ class Index extends Component {
                             <div className="row">
                                 <div className="col-md-6 mb-5">
                                     <UserInfo userdata={this.state.userdata} />
+                                </div>
+                                <div className="col-md-6 mb-5">
+                                    <Repositories />
                                 </div>
                             </div>
                         }
