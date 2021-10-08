@@ -16,3 +16,18 @@ export const GetUser = async (username) => {
         })
     return result;
 }
+
+export const GetAllRepositoriesUser = async (username) => {
+    var result = {};
+    await axios({
+        method: 'GET',
+        url: `${API_URL}/users/${username}/repos?sort=pushed`
+    })
+        .then(res => {
+            result = res;
+        })
+        .catch(err => {
+            result = 'We couldn\'t find anything for this user';
+        })
+    return result;
+}

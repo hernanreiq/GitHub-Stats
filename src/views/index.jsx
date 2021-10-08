@@ -17,8 +17,8 @@ class Index extends Component {
     searchUser = () => {
         var username = this.usernameRef.current.value;
         if (username !== '') {
-            var result = GetUser(username)
-            result.then(res => {
+            var getUserData = GetUser(username)
+            getUserData.then(res => {
                 if (res.data) {
                     this.setState({
                         userdata: res.data,
@@ -67,7 +67,7 @@ class Index extends Component {
                                     <UserInfo userdata={this.state.userdata} />
                                 </div>
                                 <div className="col-md-6 mb-5">
-                                    <Repositories />
+                                    <Repositories username={this.state.userdata.login} />
                                 </div>
                             </div>
                         }

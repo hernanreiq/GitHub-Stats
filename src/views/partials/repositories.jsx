@@ -1,7 +1,37 @@
 import React, { Component } from "react";
 import CardRepositories from "./templates/card-repositories";
+import { GetAllRepositoriesUser } from "../helpers/axios-http";
 
 class Repositories extends Component {
+    state = {
+        repos: []
+    }
+
+    getAllRepositories = (username) => {
+        var getUserRepos = GetAllRepositoriesUser(username)
+        getUserRepos.then(res => {
+            if (res.data.length > 0) {
+                this.setState({
+                    repos: res.data
+                })
+            } else {
+                this.setState({
+                    repos: []
+                })
+            }
+        })
+    }
+
+    componentDidMount() {
+        this.getAllRepositories(this.props.username);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.username !== this.props.username) {
+            this.getAllRepositories(this.props.username);
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -9,8 +39,14 @@ class Repositories extends Component {
                     <div className="card-header">
                         <h2 className="card-title mb-0 text-white">Repositories</h2>
                     </div>
-                    <div className="card-body bg-dark text-white">
-                        <CardRepositories />
+                    <div className="card-body bg-dark text-white pb-0">
+                        {this.state.repos.length > 0 &&
+                            this.state.repos.map((repo, i) => {
+                                return(
+                                    <CardRepositories key={i} repo={repo} />
+                                )
+                            })
+                        }
                     </div>
                     <div className="card-footer">
                         <h3>PAGINATION</h3>
