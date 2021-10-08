@@ -18,13 +18,12 @@ class Index extends Component {
         if (username !== '') {
             var result = GetUser(username)
             result.then(res => {
-                if (res.data){
+                if (res.data) {
                     this.setState({
                         userdata: res.data,
                         message: 'You must perform a search',
                         error: false
                     })
-                    console.log(res.data)
                 } else {
                     this.setState({
                         message: 'The user you searched for does not exist',
@@ -60,7 +59,7 @@ class Index extends Component {
                                 </div>
                             </div>
                         </div>
-                        {this.state.error ? 
+                        {this.state.error ?
                             <h2 className="text-center text-white">{this.state.message}</h2> :
                             <div className="row">
                                 <div className="col-md-6 mb-5">
