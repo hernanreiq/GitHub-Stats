@@ -18,16 +18,24 @@ export const GetUser = async (username) => {
 }
 
 export const GetAllRepositoriesUser = async (username) => {
-    var result = {};
+    var result = {
+        data: [],
+        count: 0
+    };
     await axios({
         method: 'GET',
-        url: `${API_URL}/users/${username}/repos?sort=pushed`
+        url: `${API_URL}/users/${username}/repos?sort=pushed&per_page=6`
     })
         .then(res => {
-            result = res;
+            result.data = res.data;
         })
         .catch(err => {
-            result = 'We couldn\'t find anything for this user';
+            result.data = 'We couldn\'t find anything for this user';
         })
+    if (result.data.length === 6) {
+        result.count = 6;
+    } else {
+        result.count = result.data.length;
+    }
     return result;
 }

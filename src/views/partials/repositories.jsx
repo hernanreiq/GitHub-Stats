@@ -4,7 +4,8 @@ import { GetAllRepositoriesUser } from "../helpers/axios-http";
 
 class Repositories extends Component {
     state = {
-        repos: []
+        repos: [],
+        count: 0
     }
 
     getAllRepositories = (username) => {
@@ -12,11 +13,13 @@ class Repositories extends Component {
         getUserRepos.then(res => {
             if (res.data.length > 0) {
                 this.setState({
-                    repos: res.data
+                    repos: res.data,
+                    count: res.count
                 })
             } else {
                 this.setState({
-                    repos: []
+                    repos: [],
+                    count: 0
                 })
             }
         })
@@ -41,16 +44,18 @@ class Repositories extends Component {
                     </div>
                     <div className="card-body bg-dark text-white pb-0">
                         {this.state.repos.length > 0 &&
-                            this.state.repos.map((repo, i) => {
-                                return(
+                            this.state.repos.slice(0, 5).map((repo, i) => {
+                                return (
                                     <CardRepositories key={i} repo={repo} />
                                 )
                             })
                         }
                     </div>
-                    <div className="card-footer">
-                        <h3>PAGINATION</h3>
-                    </div>
+                    {this.state.count > 5 &&
+                        <div className="card-footer text-center bg-secondary">
+                            <a href={`https://github.com/${this.props.username}?tab=repositories`} target="_blank" rel="noreferrer" className="btn btn-success">More repositories</a>
+                        </div>
+                    }
                 </div>
             </React.Fragment>
         )

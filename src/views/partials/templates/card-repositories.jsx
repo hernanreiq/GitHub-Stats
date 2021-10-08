@@ -79,21 +79,23 @@ class CardRepositories extends Component {
                             <a href={this.props.repo.html_url} className="text-decoration-none text-warning" target="_blank" rel="noreferrer">{this.props.repo.name}</a>
                         </h4>
                     </div>
-                    <div className="card-body bg-dark-2">
-                        {this.state.showDescription &&
-                            <p className="card-text">{this.props.repo.description}</p>
-                        }
-                        {this.state.showTopic &&
-                            <p className="mb-0 h5">
-                                {this.props.repo.topics.map((topic, i) => {
-                                    return (
-                                        <span className="badge badge-primary mr-2 mb-1" key={i}>{topic}</span>
-                                    )
-                                })
-                                }
-                            </p>
-                        }
-                    </div>
+                    {this.state.showDescription || this.state.showTopic ?
+                        <div className="card-body bg-dark-2">
+                            {this.state.showDescription &&
+                                <p className="card-text">{this.props.repo.description}</p>
+                            }
+                            {this.state.showTopic &&
+                                <p className="mb-0 h5">
+                                    {this.props.repo.topics.map((topic, i) => {
+                                        return (
+                                            <span className="badge badge-primary mr-2 mb-1" key={i}>{topic}</span>
+                                        )
+                                    })
+                                    }
+                                </p>
+                            }
+                        </div> : ''
+                    }
                     <div className="card-footer bg-info-2">
                         <p className="mb-0">
                             {this.state.showLanguage &&
