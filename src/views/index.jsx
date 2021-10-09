@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { GetUserdata } from "./helpers/axios-http";
+import { GetUserdata } from "./helpers/graphql-querys";
 import UserInfo from "./partials/templates/user-info";
 import Repositories from "./partials/repositories";
 import RepositoriesVSContributions from "./partials/repositories-vs-contributions";

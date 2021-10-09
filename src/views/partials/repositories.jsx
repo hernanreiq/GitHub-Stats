@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CardRepositories from "./templates/card-repositories";
-import { GetUserRepositories } from "../helpers/axios-http";
+import { GetUserRepositories } from "../helpers/graphql-querys";
 
 class Repositories extends Component {
     state = {
