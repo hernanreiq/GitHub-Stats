@@ -64,3 +64,40 @@ export const GetUserdata = async (username) => {
     const data = await response.json()
     return data
 }
+
+export const GetUserRepositories = async (username) => {
+    const headers = {
+        'Authorization': `bearer ${GH_TOKEN}`,
+    }
+    const body = {
+        "query": `query {
+            user(login: "${username}") {
+                repositories(privacy: PUBLIC, ownerAffiliations: OWNER, orderBy: {field: PUSHED_AT, direction: DESC}, first: 6) {
+                    edges {
+                        node {
+                            name
+                            url
+                            pushedAt
+                            stargazerCount
+                            description
+                            primaryLanguage {
+                                name
+                            }
+                            repositoryTopics(last: 10) {
+                                nodes {
+                                    topic {
+                                    name
+                                    }
+                                }
+                            }
+                        forkCount
+                        }
+                    }
+                }
+            }
+        }`
+    }
+    const response = await fetch('https://api.github.com/graphql', { method: 'POST', body: JSON.stringify(body), headers: headers })
+    const data = await response.json()
+    return data
+}

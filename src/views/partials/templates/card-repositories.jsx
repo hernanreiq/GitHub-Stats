@@ -7,7 +7,6 @@ class CardRepositories extends Component {
     state = {
         showDescription: false,
         showTopic: false,
-        showLanguage: false,
         showBranch: false,
         showStar: false
     }
@@ -22,7 +21,7 @@ class CardRepositories extends Component {
                 showDescription: false
             })
         }
-        if (this.props.repo.topics.length > 0) {
+        if (this.props.repo.repositoryTopics.nodes.length > 0) {
             this.setState({
                 showTopic: true
             })
@@ -31,16 +30,7 @@ class CardRepositories extends Component {
                 showTopic: false
             })
         }
-        if (this.props.repo.language) {
-            this.setState({
-                showLanguage: true
-            })
-        } else {
-            this.setState({
-                showLanguage: false
-            })
-        }
-        if (this.props.repo.forks_count) {
+        if (this.props.repo.forkCount > 0) {
             this.setState({
                 showBranch: true
             })
@@ -49,7 +39,7 @@ class CardRepositories extends Component {
                 showBranch: false
             })
         }
-        if (this.props.repo.stargazers_count) {
+        if (this.props.repo.stargazerCount > 0) {
             this.setState({
                 showStar: true
             })
@@ -76,7 +66,7 @@ class CardRepositories extends Component {
                 <div className="card shadow mb-3">
                     <div className="card-header">
                         <h4 className="card-title mb-0">
-                            <a href={this.props.repo.html_url} className="text-decoration-none text-warning" target="_blank" rel="noreferrer">{this.props.repo.name}</a>
+                            <a href={this.props.repo.url} className="text-decoration-none text-warning" target="_blank" rel="noreferrer">{this.props.repo.name}</a>
                         </h4>
                     </div>
                     {this.state.showDescription || this.state.showTopic ?
@@ -86,32 +76,32 @@ class CardRepositories extends Component {
                             }
                             {this.state.showTopic &&
                                 <p className="mb-0 h5">
-                                    {this.props.repo.topics.map((topic, i) => {
+                                    {this.props.repo.repositoryTopics.nodes.map((topic, i) => {
                                         return (
-                                            <span className="badge bg-primary me-2 mb-1" key={i}>{topic}</span>
+                                            <span className="badge bg-primary me-2 mb-1" key={i}>{topic.topic.name}</span>
                                         )
                                     })
-                                    }
+                                    } 
                                 </p>
                             }
                         </div> : ''
                     }
                     <div className="card-footer bg-info-2">
                         <p className="mb-0">
-                            {this.state.showLanguage &&
-                                <span className="me-3 badge bg-dark text-white">{this.props.repo.language}</span>
+                            {this.props.repo.primaryLanguage &&
+                                <span className="me-3 badge bg-dark text-white">{this.props.repo.primaryLanguage.name}</span>
                             }
                             {this.state.showBranch &&
                                 <span className="me-3">
-                                    <FontAwesomeIcon icon={faCodeBranch} /> {this.props.repo.forks_count}
+                                    <FontAwesomeIcon icon={faCodeBranch} /> {this.props.repo.forkCount}
                                 </span>
                             }
                             {this.state.showStar &&
                                 <span className="me-3">
-                                    <FontAwesomeIcon icon={faStar} /> {this.props.repo.stargazers_count}
+                                    <FontAwesomeIcon icon={faStar} /> {this.props.repo.stargazerCount}
                                 </span>
                             }
-                            <span className="me-3 badge bg-dark">Updated {format(this.props.repo.pushed_at)}</span>
+                            <span className="me-3 badge bg-dark">Updated {format(this.props.repo.pushedAt)}</span>
                         </p>
                     </div>
                 </div>

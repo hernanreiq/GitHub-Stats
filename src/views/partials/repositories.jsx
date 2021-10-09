@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CardRepositories from "./templates/card-repositories";
-import { GetAllRepositoriesUser } from "../helpers/axios-http";
+import { GetUserRepositories } from "../helpers/axios-http";
 
 class Repositories extends Component {
     state = {
@@ -9,12 +9,12 @@ class Repositories extends Component {
     }
 
     getAllRepositories = (username) => {
-        var getUserRepos = GetAllRepositoriesUser(username)
+        var getUserRepos = GetUserRepositories(username)
         getUserRepos.then(res => {
-            if (res.data.length > 0) {
+            if (res.data.user.repositories.edges.length > 0) {
                 this.setState({
-                    repos: res.data,
-                    count: res.count
+                    repos: res.data.user.repositories.edges,
+                    count: res.data.user.repositories.edges.length
                 })
             } else {
                 this.setState({
@@ -43,10 +43,10 @@ class Repositories extends Component {
                         <h2 className="card-title mb-0 text-white">Repositories</h2>
                     </div>
                     <div className="card-body bg-dark text-white pb-0">
-                        {this.state.repos.length > 0 &&
+                        {this.state.count > 0 &&
                             this.state.repos.slice(0, 5).map((repo, i) => {
                                 return (
-                                    <CardRepositories key={i} repo={repo} />
+                                    <CardRepositories key={i} repo={repo.node} />
                                 )
                             })
                         }
