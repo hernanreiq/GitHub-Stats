@@ -62,7 +62,7 @@ class UserInfo extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="card shadow">
+                <div className="card shadow mb-5">
                     <div className="card-header">
                         <h2 className="card-title mb-0 text-white">{this.props.userdata.name}</h2>
                         <a href={this.props.userdata.html_url} target="_blank" rel="noreferrer" className="text-warning text-decoration-none">{this.props.userdata.login}</a>

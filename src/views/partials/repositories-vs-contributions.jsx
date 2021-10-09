@@ -31,7 +31,7 @@ class RepositoriesVSContributions extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="card shadow">
+                <div className="card shadow mb-5">
                     <div className="card-header">
                         <h2 className="card-title mb-0 text-white">Repositories VS. Contributions</h2>
                     </div>

@@ -5,6 +5,7 @@ import { GetUser } from "./helpers/axios-http";
 import UserInfo from "./partials/templates/user-info";
 import Repositories from "./partials/repositories";
 import RepositoriesVSContributions from "./partials/repositories-vs-contributions";
+import { Masonry } from "./helpers/functions";
 
 class Index extends Component {
     state = {
@@ -26,6 +27,7 @@ class Index extends Component {
                         message: 'You must perform a search',
                         error: false
                     })
+                    this.masonryEffect();
                 } else {
                     this.setState({
                         message: 'The user you searched for does not exist',
@@ -39,6 +41,11 @@ class Index extends Component {
                 error: true
             })
         }
+    }
+
+    masonryEffect = () => {
+        var macyInstance = Masonry();
+        macyInstance.recalculate(true);
     }
 
     render() {
@@ -59,14 +66,14 @@ class Index extends Component {
                         </div>
                         {this.state.error ?
                             <h2 className="text-center text-white">{this.state.message}</h2> :
-                            <div className="row">
-                                <div className="col-md-6 mb-5">
+                            <div className="row" id="masonry">
+                                <div className="col-md-6">
                                     <UserInfo userdata={this.state.userdata} />
                                 </div>
-                                <div className="col-md-6 mb-5">
+                                <div className="col-md-6">
                                     <Repositories username={this.state.userdata.login} />
                                 </div>
-                                <div className="col-md-6 mb-5">
+                                <div className="col-md-6">
                                     <RepositoriesVSContributions userdata={this.state.userdata} />
                                 </div>
                             </div>
