@@ -88,7 +88,7 @@ class CardRepositories extends Component {
                                 <p className="mb-0 h5">
                                     {this.props.repo.topics.map((topic, i) => {
                                         return (
-                                            <span className="badge badge-primary mr-2 mb-1" key={i}>{topic}</span>
+                                            <span className="badge bg-primary me-2 mb-1" key={i}>{topic}</span>
                                         )
                                     })
                                     }
@@ -99,19 +99,19 @@ class CardRepositories extends Component {
                     <div className="card-footer bg-info-2">
                         <p className="mb-0">
                             {this.state.showLanguage &&
-                                <span className="mr-3 badge badge-dark text-white">{this.props.repo.language}</span>
+                                <span className="me-3 badge bg-dark text-white">{this.props.repo.language}</span>
                             }
                             {this.state.showBranch &&
-                                <span className="mr-3">
+                                <span className="me-3">
                                     <FontAwesomeIcon icon={faCodeBranch} /> {this.props.repo.forks_count}
                                 </span>
                             }
                             {this.state.showStar &&
-                                <span className="mr-3">
+                                <span className="me-3">
                                     <FontAwesomeIcon icon={faStar} /> {this.props.repo.stargazers_count}
                                 </span>
                             }
-                            <span className="mr-3 badge badge-dark">Updated {format(this.props.repo.pushed_at)}</span>
+                            <span className="me-3 badge bg-dark">Updated {format(this.props.repo.pushed_at)}</span>
                         </p>
                     </div>
                 </div>

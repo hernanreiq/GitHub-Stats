@@ -1,4 +1,5 @@
 import axios from "axios";
+import { GH_TOKEN } from "./gh-token";
 
 const API_URL = 'https://api.github.com';
 
@@ -38,4 +39,25 @@ export const GetAllRepositoriesUser = async (username) => {
         result.count = result.data.length;
     }
     return result;
+}
+
+export const GetContributions = async (username) => {
+    const headers = {
+        'Authorization': `bearer ${GH_TOKEN}`,
+    }
+    const body = {
+        "query": `query {
+            user(login: "${username}") {
+                name
+                contributionsCollection {
+                    contributionCalendar {
+                        totalContributions
+                    }
+                }
+            }
+        }`
+    }
+    const response = await fetch('https://api.github.com/graphql', { method: 'POST', body: JSON.stringify(body), headers: headers })
+    const data = await response.json()
+    return data
 }

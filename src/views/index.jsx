@@ -4,6 +4,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { GetUser } from "./helpers/axios-http";
 import UserInfo from "./partials/templates/user-info";
 import Repositories from "./partials/repositories";
+import RepositoriesVSContributions from "./partials/repositories-vs-contributions";
 
 class Index extends Component {
     state = {
@@ -48,15 +49,11 @@ class Index extends Component {
                         <div className="row">
                             <div className="col-md-8 offset-md-2 my-5">
                                 <div className="input-group mb-3 rounded">
-                                    <div className="input-group-prepend shadow">
-                                        <span className="input-group-text" id="username">
-                                            <FontAwesomeIcon icon={faGithub} />
-                                        </span>
-                                    </div>
+                                    <span className="input-group-text" id="username">
+                                        <FontAwesomeIcon icon={faGithub} />
+                                    </span>
                                     <input ref={this.usernameRef} type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="username" autoFocus />
-                                    <div className="input-group-prepend">
-                                        <button className="btn btn-success" onClick={this.searchUser}>Search user</button>
-                                    </div>
+                                    <button className="btn btn-success" onClick={this.searchUser}>Search user</button>
                                 </div>
                             </div>
                         </div>
@@ -68,6 +65,9 @@ class Index extends Component {
                                 </div>
                                 <div className="col-md-6 mb-5">
                                     <Repositories username={this.state.userdata.login} />
+                                </div>
+                                <div className="col-md-6 mb-5">
+                                    <RepositoriesVSContributions userdata={this.state.userdata} />
                                 </div>
                             </div>
                         }
