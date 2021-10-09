@@ -3,21 +3,6 @@ import { GH_TOKEN } from "./gh-token";
 
 const API_URL = 'https://api.github.com';
 
-export const GetUser = async (username) => {
-    var result = {};
-    await axios({
-        method: 'GET',
-        url: `${API_URL}/users/${username}`
-    })
-        .then(res => {
-            result = res;
-        })
-        .catch(err => {
-            result = 'We couldn\'t find anything for this user';
-        })
-    return result;
-}
-
 export const GetAllRepositoriesUser = async (username) => {
     var result = {
         data: [],
@@ -41,13 +26,31 @@ export const GetAllRepositoriesUser = async (username) => {
     return result;
 }
 
-export const GetContributions = async (username) => {
+export const GetUserdata = async (username) => {
     const headers = {
         'Authorization': `bearer ${GH_TOKEN}`,
     }
     const body = {
         "query": `query {
             user(login: "${username}") {
+                login
+                location
+                url
+                followers {
+                    totalCount
+                }
+                following {
+                    totalCount
+                }
+                bio
+                avatarUrl
+                websiteUrl
+                gists {
+                    totalCount
+                }
+                repositories(privacy: PUBLIC, ownerAffiliations: OWNER) {
+                    totalCount
+                }
                 name
                 contributionsCollection {
                     contributionCalendar {

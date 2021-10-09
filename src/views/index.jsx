@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { GetUser } from "./helpers/axios-http";
+import { GetUserdata } from "./helpers/axios-http";
 import UserInfo from "./partials/templates/user-info";
 import Repositories from "./partials/repositories";
 import RepositoriesVSContributions from "./partials/repositories-vs-contributions";
@@ -19,11 +19,11 @@ class Index extends Component {
     searchUser = () => {
         var username = this.usernameRef.current.value;
         if (username !== '') {
-            var getUserData = GetUser(username)
+            var getUserData = GetUserdata(username)
             getUserData.then(res => {
                 if (res.data) {
                     this.setState({
-                        userdata: res.data,
+                        userdata: res.data.user,
                         message: 'You must perform a search',
                         error: false
                     })
@@ -75,7 +75,7 @@ class Index extends Component {
                                 </div>
                                 <div className="col-md-6">
                                     <RepositoriesVSContributions userdata={this.state.userdata} />
-                                </div>
+                                </div> 
                             </div>
                         }
                     </div>
