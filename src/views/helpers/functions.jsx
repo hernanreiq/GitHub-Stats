@@ -1,4 +1,5 @@
 import Macy from "macy";
+import React from "react";
 
 export const Masonry = () => {
     var macyInstance = new Macy({
@@ -11,4 +12,16 @@ export const Masonry = () => {
         }
     });
     return macyInstance;
+}
+
+export const CalPercent = (totalRepositories, totalContributions) => {
+    var result = 0;
+    result = Math.round(totalContributions / totalRepositories);
+    return (
+        <React.Fragment>
+            <div className="card-footer bg-secondary">
+                <h3 className="mb-0 text-center text-white">This user has an average of <span className="badge bg-success">{result} Contributions</span> per repository</h3>
+            </div>
+        </React.Fragment>
+    );
 }

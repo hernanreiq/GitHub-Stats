@@ -71,11 +71,11 @@ class Index extends Component {
                                     <UserInfo userdata={this.state.userdata} />
                                 </div>
                                 <div className="col-md-6">
-                                    <Repositories username={this.state.userdata.login} />
-                                </div>
-                                <div className="col-md-6">
                                     <RepositoriesVSContributions userdata={this.state.userdata} />
                                 </div> 
+                                <div className="col-md-6">
+                                    <Repositories username={this.state.userdata.login} />
+                                </div>
                             </div>
                         }
                     </div>

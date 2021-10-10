@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DoughnutChart from "./templates/doughnut-chart";
+import { CalPercent } from "../helpers/functions";
 
 class RepositoriesVSContributions extends Component {
     state = {
@@ -11,7 +12,7 @@ class RepositoriesVSContributions extends Component {
         this.setState({
             totalContributions: this.props.userdata.contributionsCollection.contributionCalendar.totalContributions,
             totalRepositories: this.props.userdata.repositories.totalCount
-        })
+        });
     }
 
     componentDidMount() {
@@ -38,6 +39,9 @@ class RepositoriesVSContributions extends Component {
                                 totalRepositories={this.state.totalRepositories}
                             />
                         </div>
+                        {this.state.totalContributions > this.state.totalRepositories &&
+                            CalPercent(this.state.totalRepositories, this.state.totalContributions)
+                        }
                     </div>
                 }
             </React.Fragment>
