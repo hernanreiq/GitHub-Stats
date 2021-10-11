@@ -5,6 +5,7 @@ import { GetUserdata } from "./helpers/graphql-querys";
 import UserInfo from "./partials/templates/user-info";
 import Repositories from "./partials/repositories";
 import RepositoriesVSContributions from "./partials/repositories-vs-contributions";
+import LocationDevs from "./partials/user-location-devs";
 import { Masonry } from "./helpers/functions";
 
 class Index extends Component {
@@ -21,15 +22,16 @@ class Index extends Component {
         if (username !== '') {
             var getUserData = GetUserdata(username)
             getUserData.then(res => {
-                if (res.data) {
+                if (res.data.user) {
                     this.setState({
                         userdata: res.data.user,
-                        message: 'You must perform a search',
+                        message: '',
                         error: false
                     })
                     this.masonryEffect();
                 } else {
                     this.setState({
+                        userdata: false,
                         message: 'The user you searched for does not exist',
                         error: true
                     })
@@ -37,6 +39,7 @@ class Index extends Component {
             })
         } else {
             this.setState({
+                userdata: false,
                 message: 'You must perform a search',
                 error: true
             })
@@ -67,15 +70,16 @@ class Index extends Component {
                         {this.state.error ?
                             <h2 className="text-center text-white">{this.state.message}</h2> :
                             <div className="row" id="masonry">
-                                <div className="col-md-6">
-                                    <UserInfo userdata={this.state.userdata} />
-                                </div>
-                                <div className="col-md-6">
-                                    <RepositoriesVSContributions userdata={this.state.userdata} />
-                                </div> 
-                                <div className="col-md-6">
-                                    <Repositories username={this.state.userdata.login} />
-                                </div>
+                                {this.state.userdata &&
+                                    <React.Fragment>
+                                        <UserInfo userdata={this.state.userdata} masonry={this.masonryEffect} />
+                                        <RepositoriesVSContributions userdata={this.state.userdata} masonry={this.masonryEffect} />
+                                        <Repositories username={this.state.userdata.login} masonry={this.masonryEffect} />
+                                    </React.Fragment>
+                                }
+                                {this.state.userdata.location &&
+                                    <LocationDevs userdata={this.state.userdata} masonry={this.masonryEffect} />
+                                }
                             </div>
                         }
                     </div>

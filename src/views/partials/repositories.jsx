@@ -16,6 +16,7 @@ class Repositories extends Component {
                     repos: res.data.user.repositories.edges,
                     count: res.data.user.repositories.edges.length
                 })
+                this.props.masonry();
             } else {
                 this.setState({
                     repos: [],
@@ -38,25 +39,28 @@ class Repositories extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="card shadow mb-5">
-                    <div className="card-header">
-                        <h2 className="card-title mb-0 text-white">Repositories</h2>
-                    </div>
-                    <div className="card-body bg-dark text-white pb-0">
-                        {this.state.count > 0 &&
-                            this.state.repos.slice(0, 5).map((repo, i) => {
-                                return (
-                                    <CardRepositories key={i} repo={repo.node} />
-                                )
-                            })
-                        }
-                    </div>
-                    {this.state.count > 5 &&
-                        <div className="card-footer text-center bg-secondary">
-                            <a href={`https://github.com/${this.props.username}?tab=repositories`} target="_blank" rel="noreferrer" className="btn btn-success">More repositories</a>
+                {this.state.count > 0 &&
+                    <div className="col-md-6">
+                        <div className="card shadow mb-5">
+                            <div className="card-header text-center">
+                                <h2 className="card-title mb-0 text-white">Repositories</h2>
+                            </div>
+                            <div className="card-body bg-dark text-white pb-0">
+                                {this.state.repos.slice(0, 5).map((repo, i) => {
+                                    return (
+                                        <CardRepositories key={i} repo={repo.node} />
+                                    )
+                                })
+                                }
+                            </div>
+                            {this.state.count > 5 &&
+                                <div className="card-footer text-center bg-secondary">
+                                    <a href={`https://github.com/${this.props.username}?tab=repositories`} target="_blank" rel="noreferrer" className="btn btn-success w-100">More repositories</a>
+                                </div>
+                            }
                         </div>
-                    }
-                </div>
+                    </div>
+                }
             </React.Fragment>
         )
     }

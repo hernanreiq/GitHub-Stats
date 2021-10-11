@@ -6,7 +6,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(15, 33, 48) !important;
+  background-color: var(--azulOscuro) !important;
+  background: -webkit-linear-gradient(to right, var(--azulOscuro), var(--azulOscuro2), var(--azulOscuro));  
+  background: linear-gradient(to right, var(--azulOscuro), var(--azulOscuro2), var(--azulOscuro)); 
+}
+:root {
+  --azulOscuro: rgb(15, 33, 48);
+  --azulOscuro2: rgb(2, 21, 37);
 }
 header {
   background-color: rgb(203, 231, 255);

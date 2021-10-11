@@ -47,6 +47,7 @@ class UserInfo extends Component {
                 showWebsite: false
             })
         }
+        this.props.masonry();
     }
 
     componentDidMount() {
@@ -62,30 +63,32 @@ class UserInfo extends Component {
     render() {
         return (
             <React.Fragment>
-                <div className="card shadow mb-5">
-                    <div className="card-header">
-                        <h2 className="card-title mb-0 text-white">{this.props.userdata.name}</h2>
-                        <a href={this.props.userdata.url} target="_blank" rel="noreferrer" className="text-warning text-decoration-none">{this.props.userdata.login}</a>
-                    </div>
-                    <div className="card-body bg-dark text-white">
-                        <img src={this.props.userdata.avatarUrl} alt={this.props.userdata.name} className="card-img mb-2" />
-                        {this.state.showBio &&
-                            <p className="spaces">{this.props.userdata.bio}</p>
-                        }
-                        {this.state.showLocation &&
-                            <p className="mb-0"><FontAwesomeIcon icon={faMapMarkerAlt} /> {this.props.userdata.location}</p>
-                        }
-                        <p className="mb-0"><FontAwesomeIcon icon={faUserFriends} /> {this.props.userdata.followers.totalCount} followers / {this.props.userdata.following.totalCount} following</p>
-                        <p className="mb-0"><FontAwesomeIcon icon={faCode} /> {this.props.userdata.repositories.totalCount} repositories</p>
-                        {this.state.showGists ?
-                            <p className="mb-0"><FontAwesomeIcon icon={faFileCode} /> {this.props.userdata.gists.totalCount} gists</p> : ''
-                        }
-                    </div>
-                    {this.state.showWebsite &&
-                        <div className="card-footer bg-secondary">
-                            <a href={this.props.userdata.websiteUrl} target="_blank" rel="noreferrer" className="btn btn-success w-100">Website</a>
+                <div className="col-md-6">
+                    <div className="card shadow mb-5">
+                        <div className="card-header text-center">
+                            <h2 className="card-title mb-0 text-white">{this.props.userdata.name}</h2>
+                            <a href={this.props.userdata.url} target="_blank" rel="noreferrer" className="text-warning text-decoration-none">{this.props.userdata.login}</a>
                         </div>
-                    }
+                        <div className="card-body bg-dark text-white">
+                            <img src={this.props.userdata.avatarUrl} alt={this.props.userdata.name} className="card-img mb-2" />
+                            {this.state.showBio &&
+                                <p className="spaces">{this.props.userdata.bio}</p>
+                            }
+                            {this.state.showLocation &&
+                                <p className="mb-0"><FontAwesomeIcon icon={faMapMarkerAlt} /> {this.props.userdata.location}</p>
+                            }
+                            <p className="mb-0"><FontAwesomeIcon icon={faUserFriends} /> {this.props.userdata.followers.totalCount} followers / {this.props.userdata.following.totalCount} following</p>
+                            <p className="mb-0"><FontAwesomeIcon icon={faCode} /> {this.props.userdata.repositories.totalCount} repositories</p>
+                            {this.state.showGists ?
+                                <p className="mb-0"><FontAwesomeIcon icon={faFileCode} /> {this.props.userdata.gists.totalCount} gists</p> : ''
+                            }
+                        </div>
+                        {this.state.showWebsite &&
+                            <div className="card-footer bg-secondary">
+                                <a href={this.props.userdata.websiteUrl} target="_blank" rel="noreferrer" className="btn btn-success w-100">Website</a>
+                            </div>
+                        }
+                    </div>
                 </div>
             </React.Fragment>
         )

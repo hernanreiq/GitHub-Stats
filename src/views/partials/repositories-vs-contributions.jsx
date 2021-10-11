@@ -13,6 +13,7 @@ class RepositoriesVSContributions extends Component {
             totalContributions: this.props.userdata.contributionsCollection.contributionCalendar.totalContributions,
             totalRepositories: this.props.userdata.repositories.totalCount
         });
+        this.props.masonry();
     }
 
     componentDidMount() {
@@ -29,19 +30,21 @@ class RepositoriesVSContributions extends Component {
         return (
             <React.Fragment>
                 {this.state.totalContributions > 0 && this.state.totalRepositories > 0 &&
-                    <div className="card shadow mb-5">
-                        <div className="card-header">
-                            <h2 className="card-title mb-0 text-white">Repositories VS. Contributions</h2>
+                    <div className="col-md-6">
+                        <div className="card shadow mb-5">
+                            <div className="card-header text-center">
+                                <h2 className="card-title mb-0 text-white">Repositories VS. Contributions</h2>
+                            </div>
+                            <div className="card-body bg-dark text-white">
+                                <DoughnutChart
+                                    totalContributions={this.state.totalContributions}
+                                    totalRepositories={this.state.totalRepositories}
+                                />
+                            </div>
+                            {this.state.totalContributions > this.state.totalRepositories &&
+                                CalPercent(this.state.totalRepositories, this.state.totalContributions)
+                            }
                         </div>
-                        <div className="card-body bg-dark text-white">
-                            <DoughnutChart
-                                totalContributions={this.state.totalContributions}
-                                totalRepositories={this.state.totalRepositories}
-                            />
-                        </div>
-                        {this.state.totalContributions > this.state.totalRepositories &&
-                            CalPercent(this.state.totalRepositories, this.state.totalContributions)
-                        }
                     </div>
                 }
             </React.Fragment>
