@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { GetUserdata } from "./helpers/graphql-querys";
-import UserInfo from "./partials/templates/user-info";
+import UserInfo from "./partials/user-info";
+import GitHubStats from "./partials/github-stats";
 import Repositories from "./partials/repositories";
 import RepositoriesVSContributions from "./partials/repositories-vs-contributions";
 import LocationDevs from "./partials/user-location-devs";
@@ -73,6 +74,7 @@ class Index extends Component {
                                 {this.state.userdata &&
                                     <React.Fragment>
                                         <UserInfo userdata={this.state.userdata} masonry={this.masonryEffect} />
+                                        <GitHubStats userdata={this.state.userdata} username={this.state.userdata.login} masonry={this.masonryEffect} />
                                         <RepositoriesVSContributions userdata={this.state.userdata} masonry={this.masonryEffect} />
                                         <Repositories username={this.state.userdata.login} masonry={this.masonryEffect} />
                                     </React.Fragment>
