@@ -4,6 +4,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { GetUserdata } from "./helpers/graphql-querys";
 import UserInfo from "./partials/user-info";
 import GitHubStats from "./partials/github-stats";
+import UserStreaks from "./partials/user-streaks";
 import Repositories from "./partials/repositories";
 import RepositoriesVSContributions from "./partials/repositories-vs-contributions";
 import LocationDevs from "./partials/user-location-devs";
@@ -50,6 +51,7 @@ class Index extends Component {
     masonryEffect = () => {
         var macyInstance = Masonry();
         macyInstance.recalculate(true);
+        console.log('recalculated')
     }
 
     render() {
@@ -76,6 +78,7 @@ class Index extends Component {
                                         <UserInfo userdata={this.state.userdata} masonry={this.masonryEffect} />
                                         <GitHubStats userdata={this.state.userdata} username={this.state.userdata.login} masonry={this.masonryEffect} />
                                         <RepositoriesVSContributions userdata={this.state.userdata} masonry={this.masonryEffect} />
+                                        <UserStreaks userdata={this.state.userdata} username={this.state.userdata.login} masonry={this.masonryEffect} />
                                         <Repositories username={this.state.userdata.login} masonry={this.masonryEffect} />
                                     </React.Fragment>
                                 }
