@@ -25,3 +25,8 @@ export const CalPercent = (totalRepositories, totalContributions) => {
         </React.Fragment>
     );
 }
+
+export const IntFormat = (number) => {
+    var result = new Intl.NumberFormat('en-US').format(number);
+    return result;
+}

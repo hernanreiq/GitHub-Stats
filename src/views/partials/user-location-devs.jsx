@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { UserLocationDevs } from "../helpers/graphql-querys";
+import { IntFormat } from "../helpers/functions";
 
 class LocationDevs extends Component {
     state = {
@@ -35,7 +36,7 @@ class LocationDevs extends Component {
                             <h2 className="card-title mb-0 text-white">These are the GitHub users that match the location</h2>
                         </div>
                         <div className="card-body bg-dark text-white">
-                            <p className="display-1 text-center mb-0">{this.state.usersCount}</p>
+                            <p className="display-1 text-center mb-0">{IntFormat(this.state.usersCount)}</p>
                         </div>
                         <div className="card-footer bg-secondary ">
                             <h3 className="mb-0 text-center text-white">Location: <b>{this.props.userdata.location}</b></h3>

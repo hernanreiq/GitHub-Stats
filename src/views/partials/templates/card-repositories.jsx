@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { format } from "timeago.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faCodeBranch } from "@fortawesome/free-solid-svg-icons";
+import { IntFormat } from "../../helpers/functions";
 
 class CardRepositories extends Component {
     state = {
@@ -81,7 +82,7 @@ class CardRepositories extends Component {
                                             <span className="badge bg-primary me-2 mb-1" key={i}>{topic.topic.name}</span>
                                         )
                                     })
-                                    } 
+                                    }
                                 </p>
                             }
                         </div> : ''
@@ -93,12 +94,12 @@ class CardRepositories extends Component {
                             }
                             {this.state.showBranch &&
                                 <span className="me-3">
-                                    <FontAwesomeIcon icon={faCodeBranch} /> {this.props.repo.forkCount}
+                                    <FontAwesomeIcon icon={faCodeBranch} /> {IntFormat(this.props.repo.forkCount)}
                                 </span>
                             }
                             {this.state.showStar &&
                                 <span className="me-3">
-                                    <FontAwesomeIcon icon={faStar} /> {this.props.repo.stargazerCount}
+                                    <FontAwesomeIcon icon={faStar} /> {IntFormat(this.props.repo.stargazerCount)}
                                 </span>
                             }
                             <span className="me-3 badge bg-dark">Updated {format(this.props.repo.pushedAt)}</span>

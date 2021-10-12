@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faUserFriends, faCode, faFileCode, faHistory } from "@fortawesome/free-solid-svg-icons";
+import { IntFormat } from "../helpers/functions";
 
 class UserInfo extends Component {
     state = {
@@ -87,13 +88,13 @@ class UserInfo extends Component {
                             {this.state.showLocation &&
                                 <p className="mb-0"><FontAwesomeIcon icon={faMapMarkerAlt} /> {this.props.userdata.location}</p>
                             }
-                            <p className="mb-0"><FontAwesomeIcon icon={faUserFriends} /> {this.props.userdata.followers.totalCount} followers / {this.props.userdata.following.totalCount} following</p>
-                            <p className="mb-0"><FontAwesomeIcon icon={faCode} /> {this.props.userdata.repositories.totalCount} repositories</p>
+                            <p className="mb-0"><FontAwesomeIcon icon={faUserFriends} /> {IntFormat(this.props.userdata.followers.totalCount)} followers / {IntFormat(this.props.userdata.following.totalCount)} following</p>
+                            <p className="mb-0"><FontAwesomeIcon icon={faCode} /> {IntFormat(this.props.userdata.repositories.totalCount)} repositories</p>
                             {this.state.showGists ?
-                                <p className="mb-0"><FontAwesomeIcon icon={faFileCode} /> {this.props.userdata.gists.totalCount} gists</p> : ''
+                                <p className="mb-0"><FontAwesomeIcon icon={faFileCode} /> {IntFormat(this.props.userdata.gists.totalCount)} gists</p> : ''
                             }
                             {this.state.showHistory &&
-                                <p className="mb-0"><FontAwesomeIcon icon={faHistory} /> {this.props.userdata.contributionsCollection.contributionCalendar.totalContributions} total contributions</p>
+                                <p className="mb-0"><FontAwesomeIcon icon={faHistory} /> {IntFormat(this.props.userdata.contributionsCollection.contributionCalendar.totalContributions)} total contributions</p>
                             }
                         </div>
                         {this.state.showWebsite &&
