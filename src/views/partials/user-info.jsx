@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faUserFriends, faCode, faFileCode } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faUserFriends, faCode, faFileCode, faHistory } from "@fortawesome/free-solid-svg-icons";
 
 class UserInfo extends Component {
     state = {
         showBio: false,
         showLocation: false,
         showGists: false,
-        showWebsite: false
+        showWebsite: false,
+        showHistory: false
     }
 
     dataVerify = () => {
@@ -47,6 +48,15 @@ class UserInfo extends Component {
                 showWebsite: false
             })
         }
+        if (this.props.userdata.contributionsCollection.contributionCalendar.totalContributions > 0) {
+            this.setState({
+                showHistory: true
+            })
+        } else {
+            this.setState({
+                showHistory: false
+            })
+        }
         this.props.masonry();
     }
 
@@ -81,6 +91,9 @@ class UserInfo extends Component {
                             <p className="mb-0"><FontAwesomeIcon icon={faCode} /> {this.props.userdata.repositories.totalCount} repositories</p>
                             {this.state.showGists ?
                                 <p className="mb-0"><FontAwesomeIcon icon={faFileCode} /> {this.props.userdata.gists.totalCount} gists</p> : ''
+                            }
+                            {this.state.showHistory &&
+                                <p className="mb-0"><FontAwesomeIcon icon={faHistory} /> {this.props.userdata.contributionsCollection.contributionCalendar.totalContributions} total contributions</p>
                             }
                         </div>
                         {this.state.showWebsite &&
