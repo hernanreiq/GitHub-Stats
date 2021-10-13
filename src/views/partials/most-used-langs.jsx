@@ -13,19 +13,19 @@ class MostUsedLanguages extends Component {
     }
 
     componentDidMount() {
-        this.showMostUsedLangs(this.props.username);
+        this.showMostUsedLangs(this.props.userdata.login);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.username !== this.props.username) {
-            this.showMostUsedLangs(this.props.username);
+        if (prevProps.userdata.login !== this.props.userdata.login) {
+            this.showMostUsedLangs(this.props.userdata.login);
         }
     }
 
     render() {
         return (
             <React.Fragment>
-                {this.state.urlLangs &&
+                {this.props.userdata.repositories.totalCount &&
                     <div className="col-md-6">
                         <div className="card shadow mb-5">
                             <div className="card-header text-center">
