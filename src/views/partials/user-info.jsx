@@ -116,7 +116,7 @@ class UserInfo extends Component {
                                     <a href={`https://gist.github.com/${this.props.userdata.login}`} target="_blank" rel="noreferrer" className="btn btn-success w-100 my-2">Gists</a>
                                 }
                                 {this.state.showWebsite &&
-                                    <a href={this.props.userdata.websiteUrl} target="_blank" rel="noreferrer" className="btn btn-warning w-100 my-2">Link in bio</a>
+                                    <a href={this.props.userdata.websiteUrl} target="_blank" rel="noreferrer" className="btn btn-primary w-100 my-2">Link in bio</a>
                                 }
                             </div> : ''
                         }
