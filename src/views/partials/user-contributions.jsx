@@ -13,12 +13,12 @@ class UserContributions extends Component {
     }
 
     componentDidMount() {
-        this.showUserContributions(this.props.username);
+        this.showUserContributions(this.props.userdata.login);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.username !== this.props.username) {
-            this.showUserContributions(this.props.username);
+        if (prevProps.userdata.login !== this.props.userdata.login) {
+            this.showUserContributions(this.props.userdata.login);
         }
     }
 
