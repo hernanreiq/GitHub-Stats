@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMapMarkerAlt, faUserFriends, faCode, faFileCode, faHistory } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faUserFriends, faCode, faFileCode, faChartBar } from "@fortawesome/free-solid-svg-icons";
 import { IntFormat } from "../helpers/functions";
 
 class UserInfo extends Component {
@@ -94,7 +94,7 @@ class UserInfo extends Component {
                                 <p className="mb-0"><FontAwesomeIcon icon={faFileCode} /> {IntFormat(this.props.userdata.gists.totalCount)} gists</p> : ''
                             }
                             {this.state.showHistory &&
-                                <p className="mb-0"><FontAwesomeIcon icon={faHistory} /> {IntFormat(this.props.userdata.contributionsCollection.contributionCalendar.totalContributions)} total contributions</p>
+                                <p className="mb-0"><FontAwesomeIcon icon={faChartBar} /> {IntFormat(this.props.userdata.contributionsCollection.contributionCalendar.totalContributions)} total contributions</p>
                             }
                         </div>
                         {this.state.showWebsite &&

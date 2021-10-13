@@ -13,12 +13,12 @@ class UserStreaks extends Component {
     }
 
     componentDidMount() {
-        this.showUserStreaks(this.props.username);
+        this.showUserStreaks(this.props.userdata.login);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.username !== this.props.username) {
-            this.showUserStreaks(this.props.username);
+        if (prevProps.userdata.login !== this.props.userdata.login) {
+            this.showUserStreaks(this.props.userdata.login);
         }
     }
 
