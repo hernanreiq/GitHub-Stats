@@ -62,7 +62,7 @@ class Repositories extends Component {
                             </div>
                             {this.state.count > 5 &&
                                 <div className="card-footer text-center bg-secondary">
-                                    <a href={`https://github.com/${this.props.username}?tab=repositories`} target="_blank" rel="noreferrer" className="btn btn-success w-100">More repositories</a>
+                                    <a href={`https://github.com/${this.props.userdata.login}?tab=repositories`} target="_blank" rel="noreferrer" className="btn btn-success w-100">More repositories</a>
                                 </div>
                             }
                         </div>

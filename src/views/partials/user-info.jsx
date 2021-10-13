@@ -9,7 +9,8 @@ class UserInfo extends Component {
         showLocation: false,
         showGists: false,
         showWebsite: false,
-        showHistory: false
+        showHistory: false,
+        showRepositories: false
     }
 
     dataVerify = () => {
@@ -38,6 +39,15 @@ class UserInfo extends Component {
         } else {
             this.setState({
                 showGists: false
+            })
+        }
+        if (this.props.userdata.repositories.totalCount > 0) {
+            this.setState({
+                showRepositories: true
+            })
+        } else {
+            this.setState({
+                showRepositories: false
             })
         }
         if (this.props.userdata.websiteUrl) {
@@ -97,10 +107,18 @@ class UserInfo extends Component {
                                 <p className="mb-0"><FontAwesomeIcon icon={faChartBar} /> {IntFormat(this.props.userdata.contributionsCollection.contributionCalendar.totalContributions)} total contributions</p>
                             }
                         </div>
-                        {this.state.showWebsite &&
+                        {this.state.showWebsite || this.state.showGists || this.state.showRepositories ?
                             <div className="card-footer bg-secondary">
-                                <a href={this.props.userdata.websiteUrl} target="_blank" rel="noreferrer" className="btn btn-success w-100">Website</a>
-                            </div>
+                                {this.state.showRepositories &&
+                                    <a href={`https://github.com/${this.props.userdata.login}?tab=repositories`} target="_blank" rel="noreferrer" className="btn btn-success w-100 my-2">Repositories</a>
+                                }
+                                {this.state.showGists &&
+                                    <a href={`https://gist.github.com/${this.props.userdata.login}`} target="_blank" rel="noreferrer" className="btn btn-success w-100 my-2">Gists</a>
+                                }
+                                {this.state.showWebsite &&
+                                    <a href={this.props.userdata.websiteUrl} target="_blank" rel="noreferrer" className="btn btn-warning w-100 my-2">Link in bio</a>
+                                }
+                            </div> : ''
                         }
                     </div>
                 </div>
