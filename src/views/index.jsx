@@ -49,6 +49,12 @@ class Index extends Component {
         }
     }
 
+    enterKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            this.searchUser();
+        }
+    }
+
     masonryEffect = () => {
         var macyInstance = Masonry();
         macyInstance.recalculate(true);
@@ -65,7 +71,7 @@ class Index extends Component {
                                     <span className="input-group-text" id="username">
                                         <FontAwesomeIcon icon={faGithub} />
                                     </span>
-                                    <input ref={this.usernameRef} type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="username" autoFocus />
+                                    <input ref={this.usernameRef} onKeyDown={this.enterKeyDown} type="text" className="form-control" placeholder="Username" aria-label="Username" aria-describedby="username" autoFocus />
                                     <button className="btn btn-success" onClick={this.searchUser}>Search user</button>
                                 </div>
                             </div>
