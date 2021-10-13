@@ -13,12 +13,12 @@ class GitHubStats extends Component {
     }
 
     componentDidMount() {
-        this.showGitHubStats(this.props.username);
+        this.showGitHubStats(this.props.userdata.login);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.username !== this.props.username) {
-            this.showGitHubStats(this.props.username);
+        if (prevProps.userdata.login !== this.props.userdata.login) {
+            this.showGitHubStats(this.props.userdata.login);
         }
     }
 

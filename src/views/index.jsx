@@ -76,7 +76,7 @@ class Index extends Component {
                                 {this.state.userdata &&
                                     <React.Fragment>
                                         <UserInfo userdata={this.state.userdata} masonry={this.masonryEffect} />
-                                        <GitHubStats userdata={this.state.userdata} username={this.state.userdata.login} masonry={this.masonryEffect} />
+                                        <GitHubStats userdata={this.state.userdata} masonry={this.masonryEffect} />
                                         <UserContributions userdata={this.state.userdata} masonry={this.masonryEffect} />
                                         <UserStreaks userdata={this.state.userdata} masonry={this.masonryEffect} />
                                         <MostUsedLanguages userdata={this.state.userdata} masonry={this.masonryEffect} />
