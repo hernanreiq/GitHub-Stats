@@ -9,30 +9,37 @@ class Repositories extends Component {
     }
 
     getAllRepositories = (username) => {
-        var getUserRepos = GetUserRepositories(username)
-        getUserRepos.then(res => {
-            if (res.data.user.repositories.edges.length > 0) {
-                this.setState({
-                    repos: res.data.user.repositories.edges,
-                    count: res.data.user.repositories.edges.length
-                })
-                this.props.masonry();
-            } else {
-                this.setState({
-                    repos: [],
-                    count: 0
-                })
-            }
-        })
+        if (this.props.userdata.repositories.totalCount) {
+            var getUserRepos = GetUserRepositories(username)
+            getUserRepos.then(res => {
+                if (res.data.user.repositories.edges.length > 0) {
+                    this.setState({
+                        repos: res.data.user.repositories.edges,
+                        count: res.data.user.repositories.edges.length
+                    })
+                    this.props.masonry();
+                } else {
+                    this.setState({
+                        repos: [],
+                        count: 0
+                    })
+                }
+            })
+        } else {
+            this.setState({
+                repos: [],
+                count: 0
+            })
+        }
     }
 
     componentDidMount() {
-        this.getAllRepositories(this.props.username);
+        this.getAllRepositories(this.props.userdata.login);
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.username !== this.props.username) {
-            this.getAllRepositories(this.props.username);
+        if (prevProps.userdata.login !== this.props.userdata.login) {
+            this.getAllRepositories(this.props.userdata.login);
         }
     }
 

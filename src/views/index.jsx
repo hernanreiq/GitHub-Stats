@@ -79,8 +79,8 @@ class Index extends Component {
                                         <GitHubStats userdata={this.state.userdata} username={this.state.userdata.login} masonry={this.masonryEffect} />
                                         <UserContributions userdata={this.state.userdata} username={this.state.userdata.login} masonry={this.masonryEffect} />
                                         <UserStreaks userdata={this.state.userdata} username={this.state.userdata.login} masonry={this.masonryEffect} />
-                                        <Repositories username={this.state.userdata.login} masonry={this.masonryEffect} />
                                         <MostUsedLanguages userdata={this.state.userdata} username={this.state.userdata.login} masonry={this.masonryEffect} />
+                                        <Repositories userdata={this.state.userdata} masonry={this.masonryEffect} />
                                     </React.Fragment>
                                 }
                                 {this.state.userdata.location &&
