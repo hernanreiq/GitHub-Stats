@@ -1,0 +1,8 @@
+{
+  "short_name": "GitHub Stats",
+  "name": "All public stats for a GitHub profile",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
