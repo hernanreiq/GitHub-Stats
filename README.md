@@ -39,7 +39,7 @@ src\views\helpers\gh-token.jsx
 You must replace the one in the constant GH_TOKEN.
 
 ```
-export const GH_TOKEN = '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';
+export const GH_TOKEN = 'YOUR_TOKEN_CODE_GOES_HERE';
 ```
 When you save and update the browser window, you will be able to use the application without problems.
 ___
