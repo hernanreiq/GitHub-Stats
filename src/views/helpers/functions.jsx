@@ -1,5 +1,5 @@
 import Macy from "macy";
-import React from "react";
+import Swal from "sweetalert2";
 
 export const Masonry = () => {
     var macyInstance = new Macy({
@@ -14,19 +14,16 @@ export const Masonry = () => {
     return macyInstance;
 }
 
-export const CalPercent = (totalRepositories, totalContributions) => {
-    var result = 0;
-    result = Math.round(totalContributions / totalRepositories);
-    return (
-        <React.Fragment>
-            <div className="card-footer bg-secondary">
-                <h3 className="mb-0 text-center text-white">This user has an average of <span className="badge bg-success">{result} Contributions</span> per repository</h3>
-            </div>
-        </React.Fragment>
-    );
-}
-
 export const IntFormat = (number) => {
     var result = new Intl.NumberFormat('en-US').format(number);
     return result;
+}
+
+export const CopyThisCode = (url) => {
+    navigator.clipboard.writeText(`![User Stats](${url})`);
+    Swal.fire({
+        icon: 'success',
+        title: `Code copied successfully!`,
+        text: `Paste this Markdown code into the README.md file of your profile.`
+    })
 }

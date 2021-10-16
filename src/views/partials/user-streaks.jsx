@@ -35,7 +35,7 @@ class UserStreaks extends Component {
                                 <img src={this.state.urlStreaks} alt={this.props.userdata.name} className="card-img" />
                             </div>
                             <div className="card-footer text-center bg-secondary">
-                                <a href={this.state.urlStreaks} target="_blank" rel="noreferrer" className="btn btn-success w-100">Put it on your GitHub profile</a>
+                                <button onClick={() => {this.props.CopyCode(this.state.urlStreaks)}} className="btn btn-success w-100">Put it on your GitHub profile</button>
                             </div>
                         </div>
                     </div>

@@ -9,7 +9,7 @@ import MostUsedLanguages from "./partials/most-used-langs";
 import UserContributions from "./partials/user-contributions";
 import Repositories from "./partials/repositories";
 import LocationDevs from "./partials/user-location-devs";
-import { Masonry } from "./helpers/functions";
+import { Masonry, CopyThisCode } from "./helpers/functions";
 
 class Index extends Component {
     state = {
@@ -60,6 +60,10 @@ class Index extends Component {
         macyInstance.recalculate(true);
     }
 
+    copyStatCode = (url) => {
+        CopyThisCode(url);
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -82,10 +86,10 @@ class Index extends Component {
                                 {this.state.userdata &&
                                     <React.Fragment>
                                         <UserInfo userdata={this.state.userdata} masonry={this.masonryEffect} />
-                                        <GitHubStats userdata={this.state.userdata} masonry={this.masonryEffect} />
-                                        <UserContributions userdata={this.state.userdata} masonry={this.masonryEffect} />
-                                        <UserStreaks userdata={this.state.userdata} masonry={this.masonryEffect} />
-                                        <MostUsedLanguages userdata={this.state.userdata} masonry={this.masonryEffect} />
+                                        <GitHubStats userdata={this.state.userdata} CopyCode={this.copyStatCode} masonry={this.masonryEffect} />
+                                        <UserContributions userdata={this.state.userdata} CopyCode={this.copyStatCode} masonry={this.masonryEffect} />
+                                        <UserStreaks userdata={this.state.userdata} CopyCode={this.copyStatCode} masonry={this.masonryEffect} />
+                                        <MostUsedLanguages userdata={this.state.userdata} CopyCode={this.copyStatCode} masonry={this.masonryEffect} />
                                         <Repositories userdata={this.state.userdata} masonry={this.masonryEffect} />
                                     </React.Fragment>
                                 }

@@ -35,7 +35,7 @@ class UserContributions extends Component {
                                 <img src={this.state.urlContributions} alt={this.props.userdata.name} className="card-img" />
                             </div>
                             <div className="card-footer text-center bg-secondary">
-                                <a href={this.state.urlContributions} target="_blank" rel="noreferrer" className="btn btn-success w-100">Put it on your GitHub profile</a>
+                            <button onClick={() => {this.props.CopyCode(this.state.urlContributions)}} className="btn btn-success w-100">Put it on your GitHub profile</button>
                             </div>
                         </div>
                     </div>

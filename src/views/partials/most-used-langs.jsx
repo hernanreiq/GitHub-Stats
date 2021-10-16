@@ -35,7 +35,7 @@ class MostUsedLanguages extends Component {
                                 <img src={this.state.urlLangs} alt={this.props.userdata.name} className="card-img" />
                             </div>
                             <div className="card-footer text-center bg-secondary">
-                                <a href={this.state.urlLangs} target="_blank" rel="noreferrer" className="btn btn-success w-100">Put it on your GitHub profile</a>
+                            <button onClick={() => {this.props.CopyCode(this.state.urlLangs)}} className="btn btn-success w-100">Put it on your GitHub profile</button>
                             </div>
                         </div>
                     </div>
